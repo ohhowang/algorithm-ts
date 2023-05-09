@@ -11,7 +11,7 @@ type TupleArray<T, N extends number> = [T, ...T[]] & { length: N };
  * R: row 二维数组中项格式
  * C: column 二维数组中项个数
  */
-type TupleBoard<T, R extends number, C extends number> = TupleArray<TupleArray<T, C>, R>;
+export type TupleBoard<T, R extends number, C extends number> = TupleArray<TupleArray<T, C>, R>;
 
 /**
  * 根据传入的数
@@ -42,38 +42,11 @@ function generateBoard<R extends number, C extends number>(
   return rowArr as TupleBoard<number, R, C>;
 }
 
-const log = (val: object) => console.table(val);
-
-main();
-
-function main() {
-  const originRow = 9;
-  const originCol = 9;
-  let board: TupleBoard<number, typeof originRow, typeof originCol> = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 2, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ];
-
-  const sparseArray =
-    generateSparseArray<TupleBoard<number, typeof originRow, typeof originCol>>(board);
-  const parseArray = parseSparseArray(sparseArray);
-
-  log(sparseArray);
-  log(parseArray);
-}
-
 /**
  * 展开稀疏数组
  * @param sparseArray 稀疏数组
  */
-function parseSparseArray(sparseArray: number[][]): number[][] {
+export function parseSparseArray(sparseArray: number[][]): number[][] {
   const row = sparseArray[0][0];
   const col = sparseArray[0][1];
   const array = Array.from({ length: row }).map(() => Array.from({ length: col }).map(() => 0));
@@ -90,7 +63,7 @@ function parseSparseArray(sparseArray: number[][]): number[][] {
  * 生成稀疏数组
  * @param board 棋盘
  */
-function generateSparseArray<T extends number[][]>(board: T): number[][] {
+export function generateSparseArray<T extends number[][]>(board: T): number[][] {
   let count: number = 0;
   let sparseArray: number[][] = [];
 
