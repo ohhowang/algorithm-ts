@@ -1,6 +1,6 @@
 import { Node } from "./node";
 
-export class SingleLinkedList<T extends any> {
+export class SingleLinkedList<T = any> {
   head: Node<T> | null = null;
 
   /**
@@ -178,5 +178,26 @@ export class SingleLinkedList<T extends any> {
     }
 
     return values.join("->") || "";
+  }
+
+  /**
+   * 反转列表
+   */
+  reverse() {
+    if (!this.head) {
+      throw new Error("the linked list is empty");
+    } else {
+      let cur: Node<T> = this.head;
+      let prev: Node<T> | null = null;
+      let temp: Node<T> | null = null;
+
+      while (cur !== null) {
+        temp = cur.next;
+        cur.next = prev;
+        prev = cur;
+        cur = temp as Node<T>;
+      }
+      this.head = prev;
+    }
   }
 }
