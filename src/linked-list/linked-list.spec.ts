@@ -103,4 +103,15 @@ describe("single linked list", () => {
     list.reverse();
     expect(list.print()).toBe("5->4->3->2->1");
   });
+
+  it("recursion reverse linked list", () => {
+    const list = new SingleLinkedList<number>();
+    list.insertAtEnd(1);
+    list.insertAtEnd(2);
+    list.insertAtEnd(3);
+    list.insertAtEnd(4);
+    list.insertAtEnd(5);
+    list.reverseByRecursion();
+    expect(list.print()).toBe("5->4->3->2->1");
+  });
 });

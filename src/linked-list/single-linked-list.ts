@@ -200,4 +200,19 @@ export class SingleLinkedList<T = any> {
       this.head = prev;
     }
   }
+
+  /**
+   * 递归反转链表
+   */
+  reverseByRecursion() {
+    const reverse: (head: Node<T> | null) => Node<T> | null = (head) => {
+      if (head == null || head.next == null) return head;
+
+      let node: Node<T> | null = reverse(head.next);
+      head.next.next = head;
+      head.next = null;
+      return node;
+    };
+    this.head = reverse(this.head);
+  }
 }
