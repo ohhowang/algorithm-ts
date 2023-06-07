@@ -1,7 +1,7 @@
 import { ArrayQueue } from "./array-queue";
 import { CircleQueue } from "./circle-queue";
 
-describe("queue test", () => {
+describe("array queue test", () => {
   it("array-queue", () => {
     const queue = new ArrayQueue<string>();
     queue.add("a");
